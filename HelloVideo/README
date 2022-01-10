@@ -1,0 +1,40 @@
+###HelloWorld Video Display provenance = network (stream)
+
+###VideoView: ne joue que des fichiers locaux (storage du device)
+https://tutorialwing.com/android-videoview-tutorial-example/
+https://developer.android.com/guide/topics/media/media-formats
+joue un fichier créé avec:
+gst-launch-1.0 -e videotestsrc num-buffers=200 ! video/x-raw,format=NV12,width=480,height=360 ! vaapih264enc bitrate=1000000 ! h264parse ! mp4mux ! filesink location=test.mp4
+ 
+
+###MediaPlayer: permet de jouer des fichiers sur le réseau
+
+#Points clés:
+1) support annoncés par Google
+Les formats de network stream supportés par le MP: https://developer.android.com/guide/topics/media/media-formats#network
+2) VLC: pour les deux protocoles testés: HLS et RTSP, si marche sur VLC, marche sur le MediaPlayer
+
+#Doc utilisée pour faire marcher le MP
+https://developer.android.com/guide/topics/media/mediaplayer
+http://www.pepinonline.com/courses/mobileos/25/mediaplayer/
+https://developpaper.com/android-uses-surfaceview-mediaplayer-to-play-video/
+https://developpaper.com/streaming-media-android-plays-hls-rtsps-native-class-library-mediaplayer/
+
+#HLS (HTTP/HTTPS live streaming)
+Basé sur la création et mise à disposition de fichiers .ts et d'un fichier .m3u8
+gst-launch-1.0 videotestsrc is-live=true ! timeoverlay ! vaapih264enc ! h264parse ! hlssink2 max-files=5
+servir les fichiers générés dans le Current Working Directory (où lancement serveur):
+serveur minimaliste (sans install modules pythons nécessaires): python3 -m http.server 1337
+lecture dans VLC et ici en java avec MediaPlayer via l'URL: 
+	http://192.168.1.14:1337/playlist.m3u8
+ 
+#RTSP
+C'est un protocole réseau qui ressemble à HTTP. Famille: TCP. netstat -l pour voir le port occupé quand le serveur tourne
+une bonne intro: https://csrgxtu.github.io/2015/04/08/An-Introduction-To-RTSP/
+Pas possible dans gstreamer de se baser seulement sur un élément comme avec hlssink (je suppose que le côté "serveur" ne fait pas partie
+	des objectifs de gstreamer)
+Mais il existe un package externe gstreamer que j'arrive à faire fonctionner:
+gst-rtsp-server-1.18.1
+dans les exemples: test-readme.c --> remplacer x264enc par vaapih264enc
+lecture dans VLC et ici dans MediaPlayer via l'URL: 
+	rtsp://192.168.1.14:8554/test
