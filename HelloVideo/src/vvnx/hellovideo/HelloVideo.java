@@ -5,6 +5,9 @@
  * #Que pour jouer une local file
  * adb shell pm grant vvnx.hellovideo android.permission.READ_EXTERNAL_STORAGE 
  * 
+ * MediaPlayer fonctionne avec:
+ * test-launch "( rpicamsrc bitrate=2000000 keyframe-interval=15 ! \
+ video/x-h264,framerate=15/1,width=640,height=480 ! h264parse ! rtph264pay name=pay0 pt=96 )"
  * 
 
  */
@@ -43,7 +46,8 @@ public class HelloVideo extends Activity {
         //String url = "http://91.121.159.124:8000/eko-des-garrigues-128k.mp3"; 
 		//String url = "http://192.168.1.14:1337/playlist.m3u8"; //HLS
 		
-		String url = "rtsp://192.168.49.1:8554/test"; //RTSP
+		String url = "rtsp://192.168.49.1:8554/test"; //RTSP 192.168.49.1
+		//String url = "rtsp://192.168.49.2:8554/test"; //RTSP 192.168.49.2
 		
 		
 		mediaPlayer = new MediaPlayer();
