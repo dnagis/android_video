@@ -50,13 +50,20 @@ public class HelloVideo extends Activity {
         
         
         
-        //String localpath = "/storage/emulated/0/Movies/test.mp4";
+        //String url = "/storage/emulated/0/Movies/test.mp4";
+       
+        
         //Attention pour les streams, par défaut https obligatoire (3/4 de mes Android Devices). workaround: android:usesCleartextTraffic="true"
         //String url = "http://91.121.159.124:8000/eko-des-garrigues-128k.mp3"; 
 		//String url = "http://192.168.1.14:1337/playlist.m3u8"; //HLS		
 		//String url = "rtsp://192.168.1.19:8554/test";
-		String url = "rtsp://192.168.49.1:8554/test"; //RTSP 192.168.49.1
+		//String url = "rtsp://192.168.49.1:8554/test"; //RTSP 192.168.49.1
 		//String url = "rtsp://192.168.49.2:8554/test"; //RTSP 192.168.49.2
+		
+		//Fichiers samples sur le web (Serve&Display 2023)
+		//String url = "https://gstreamer.freedesktop.org/data/media/sintel_trailer-480p.webm"; //Tuto Gstreamer Basic Tuto1. Lecture OK
+		//String url = "https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.ogv"; //GenericSource: initFromDataSource, source has no track!
+		String url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"; //Fonctionne
 		
 		
 		mediaPlayer = new MediaPlayer();
