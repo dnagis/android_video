@@ -63,7 +63,11 @@ public class HelloVideo extends Activity {
 		//Fichiers samples sur le web (Serve&Display 2023)
 		//String url = "https://gstreamer.freedesktop.org/data/media/sintel_trailer-480p.webm"; //Tuto Gstreamer Basic Tuto1. Lecture OK
 		//String url = "https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.ogv"; //GenericSource: initFromDataSource, source has no track!
-		String url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"; //Fonctionne
+		//String url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"; //Fonctionne
+		
+		
+		//String url = "http://192.168.1.17:8000/Big_Buck_Bunny_360_10s_1MB.mp4";
+		String url = "http://192.168.1.17:8000/test.mp4";
 		
 		
 		mediaPlayer = new MediaPlayer();
